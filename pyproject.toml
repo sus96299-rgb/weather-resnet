@@ -1,0 +1,24 @@
+# ============================================================
+# 工具链统一配置：ruff（lint/format）+ pytest
+# 依赖安装见 requirements.txt / requirements-dev.txt
+# ============================================================
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["results", "checkpoints"]
+
+[tool.ruff.lint]
+# E/F: pycodestyle/pyflakes, I: isort 导入排序, UP: 现代化语法
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]  # 行长由 formatter 管，不硬报错
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+# #%% 分块实验脚本：每个 cell 独立 import、分号简写是 notebook 风格，予以豁免
+"src/ablation_experiment.py" = ["E402", "E702", "F811", "F541", "I001"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"

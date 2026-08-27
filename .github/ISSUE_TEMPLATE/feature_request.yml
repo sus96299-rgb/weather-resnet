@@ -1,0 +1,22 @@
+name: 💡 功能建议
+description: 提出新想法或改进建议
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你想解决什么问题？
+      placeholder: 比如希望支持视频逐帧识别、支持更多天气类别 ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你期望的方案
+      placeholder: 描述你希望的实现方式或使用形式
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 备选方案 / 补充信息

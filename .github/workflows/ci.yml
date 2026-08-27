@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: 安装 PyTorch（CPU 版，提速且无需 GPU）
+        run: pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+      - name: 安装项目与开发依赖
+        run: pip install -r requirements-dev.txt
+
+      - name: Ruff 代码规范检查
+        run: ruff check src tests
+
+      - name: Pytest 单元测试
+        run: pytest

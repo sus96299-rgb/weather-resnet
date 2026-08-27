@@ -1,0 +1,17 @@
+# 统一文本文件换行符，避免 Windows 上出现
+# "LF will be replaced by CRLF" 警告及跨平台 diff 混乱
+* text=auto eol=lf
+
+# Windows 专用脚本保留 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# 二进制文件不做任何换行符/文本转换
+*.pth binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff2 binary

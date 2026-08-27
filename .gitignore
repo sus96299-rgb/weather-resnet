@@ -1,0 +1,33 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# ===== 数据集（体积大，不入库；按 README 指引自行下载）=====
+weather/
+weather_dataset/
+weather_dataset_split/
+data/
+*.zip
+
+# ===== 训练产物（仓库仅保留 checkpoints/best_finetune.pth 用于演示）=====
+*.pth
+!checkpoints/
+checkpoints/*
+!checkpoints/best_finetune.pth
+
+# ===== 临时输出 =====
+predicted/
+/src/*_pred.jpg
+runs/
+
+# ===== 系统 / IDE =====
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
